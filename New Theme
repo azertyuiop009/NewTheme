@@ -2169,7 +2169,7 @@ function Material.Load(Config)
 			local TextField = Objects.new("Round")
 			TextField.Name = "TextField"
 			TextField.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,30)
-			TextField.ImageColor3 = Theme.TextField
+			TextField.ImageColor3 = Color3.new(0,0,0)
 			TextField.ImageTransparency = 1
 			TextField.Parent = PageContentFrame
 
