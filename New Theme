@@ -314,7 +314,15 @@ local function GetXY(GuiObject)
 	local Px, Py = math.clamp(Mouse.X - GuiObject.AbsolutePosition.X, 0, Max), math.clamp(Mouse.Y - GuiObject.AbsolutePosition.Y, 0, May)
 	return Px/Max, Py/May
 end
-
+local function tog(name)
+if(name == true) then
+name = false
+elseif(name == false) then
+name = true
+else
+name = false
+end
+end
 local function CircleAnim(GuiObject, EndColour, StartColour)
 	local PX, PY = GetXY(GuiObject)
 	local Circle = Objects.new("Circle")
