@@ -1301,6 +1301,7 @@ function Material.Load(Config)
                 end
             end
 			function DropdownLibrary:SetOptions(NewMenu)
+                if(NewMenu == DropdownOptions) then return end
 				DropdownOptions = NewMenu or {}
 				NumberOfOptions = #DropdownOptions
 				DropdownSize = UDim2.fromScale(1,0) + UDim2.fromOffset(0,(NumberOfOptions*20) + ((NumberOfOptions - 1) * 5))
