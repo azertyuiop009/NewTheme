@@ -1253,7 +1253,6 @@ function Material.Load(Config)
                     
                     DropdownCallback(Value)
                     DropToggle = false                    
-            print(DropdownClear)
                     if(DropdownClear == true) then
                         DropdownTitle.Text = DropdownText..": "..Value
                     end
@@ -2118,7 +2117,12 @@ function Material.Load(Config)
 			local ToggleText = ToggleConfig.Text or "nil toggle"
 			local ToggleCallback = ToggleConfig.Callback or function() print("nil toggle") end
 			local ToggleDefault = ToggleConfig.Enabled or false
-            local Toggleactived = ToggleConfig.actived or true
+            local Toggleactived 
+            if(ToggleConfig.actived ~= nil) then
+                Toggleactived = ToggleConfig.actived
+            else
+                Toggleactived = true
+            end
 			local Menu = ToggleConfig.Menu or {}
 
             local dathem
