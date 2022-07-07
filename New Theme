@@ -2118,7 +2118,7 @@ function Material.Load(Config)
 			local Toggle = Objects.new("SmoothButton")
 			Toggle.Name = "Toggle"
 			Toggle.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,30)
-			Toggle.ImageColor3 = Color3.new(0,0,0)
+			Toggle.ImageColor3 = dathem
 			Toggle.ImageTransparency = 0
 			Toggle.Parent = PageContentFrame
 
@@ -2191,9 +2191,9 @@ function Material.Load(Config)
             function ToggleLibrary:SetActived(val)
                 Toggleactived = val
                 if(val == true) then
-                    ToggleLabel.BackgroundColor3 = Color3.new(0,0,0)
+                    Toggle.ImageColor3 = Color3.new(0,0,0)
                 else
-                    ToggleLabel.BackgroundColor3 = Color3.fromRGB(255,0,0)
+                    Toggle.ImageColor3 = Color3.fromRGB(255,0,0)
                 end
             end
 
