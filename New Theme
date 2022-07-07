@@ -2106,6 +2106,7 @@ function Material.Load(Config)
 			local ToggleText = ToggleConfig.Text or "nil toggle"
 			local ToggleCallback = ToggleConfig.Callback or function() print("nil toggle") end
 			local ToggleDefault = ToggleConfig.Enabled or false
+            local Toggleactived = ToggleConfig.actived or true
 			local Menu = ToggleConfig.Menu or {}
 
 			local Toggle = Objects.new("SmoothButton")
@@ -2161,9 +2162,8 @@ function Material.Load(Config)
 			TweenService:Create(ToggleLabel, TweenInfo.new(0.5), {TextTransparency = 0}):Play()
 
 			TweenService:Create(Dot, TweenInfo.new(0.15), {Position = (ToggleDefault and UDim2.fromScale(1,0.5) or UDim2.fromScale(0,0.5)) - UDim2.fromOffset(8,8), ImageColor3 = ToggleDefault and Theme.Toggle or Theme.ToggleAccent}):Play()
-			ToggleCallback(ToggleDefault)
-
 			Toggle.MouseButton1Down:Connect(function()
+                if(Toggleactived == false) then return end
 				ToggleDefault = not ToggleDefault
 				TweenService:Create(Dot, TweenInfo.new(0.15), {Position = (ToggleDefault and UDim2.fromScale(1,0.5) or UDim2.fromScale(0,0.5)) - UDim2.fromOffset(8,8), ImageColor3 = ToggleDefault and Theme.Toggle or Theme.ToggleAccent}):Play()
 				ToggleCallback(ToggleDefault)
@@ -2182,6 +2182,14 @@ function Material.Load(Config)
 			function ToggleLibrary:SetText(Value)
 				ToggleLabel.Text = Value
 			end
+            function ToggleLibrary:SetActived(val)
+                Toggleactived = val
+                if(val == true) then
+                    ToggleLabel.ImageColor3 = Color3.new(0,0,0)
+                else
+                    ToggleLabel.ImageColor3 = Color3.fromRGB(255,0,0)
+                end
+            end
 
 			function ToggleLibrary:GetText()
 				return ToggleLabel.Text
