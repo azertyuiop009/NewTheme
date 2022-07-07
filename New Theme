@@ -1161,6 +1161,8 @@ function Material.Load(Config)
             else
                 Dropdownactived = true
             end
+            print(DropdownClear)
+            print(DropdownConfig.Text)
 			local DropdownCallback = DropdownConfig.Callback or function() print("nil dropdown") end
 			local DropdownOptions = DropdownConfig.Options or {}
 			local Menu = DropdownConfig.Menu or {}
