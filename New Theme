@@ -1331,10 +1331,13 @@ function Material.Load(Config)
 					}, DropdownContent)
 
 					NewButton.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,20)
-					NewButton.MouseButton1Down:Connect(function()
-						DropdownCallback(Value)
-						DropdownTitle.Text = DropdownText..": "..Value
-					end)
+
+                    NewButton.MouseButton1Down:Connect(function()
+                        DropdownCallback(Value)
+                        if(DropdownClear == true) then
+                            DropdownTitle.Text = DropdownText..": "..Value
+                        end
+                    end)
 				end)
 			end
 
