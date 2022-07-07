@@ -1149,9 +1149,17 @@ function Material.Load(Config)
 
 		function OptionLibrary.Dropdown(DropdownConfig)
 			local DropdownText = DropdownConfig.Text or "nil dropdown"
+            local DropdownClear = DropdownConfig.Clear or false
+            local Dropdownactived = DropdownConfig.actived or true
 			local DropdownCallback = DropdownConfig.Callback or function() print("nil dropdown") end
 			local DropdownOptions = DropdownConfig.Options or {}
 			local Menu = DropdownConfig.Menu or {}
+            local dathem
+            if(Dropdownactived == true) then
+                dathem = Theme.Dropdown
+            else
+                dathem = Color3.fromRGB(255,0,0)
+            end
 
 			local Dropdown = Objects.new("Frame")
 			Dropdown.Name = "Dropdown"
@@ -1161,7 +1169,7 @@ function Material.Load(Config)
 			local DropdownBar = Objects.new("Round")
 			DropdownBar.Name = "TitleBar"
 			DropdownBar.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,30)
-			DropdownBar.ImageColor3 = Theme.Dropdown
+			DropdownBar.ImageColor3 = dathem
 			DropdownBar.ImageTransparency = 1
 			DropdownBar.Parent = Dropdown
 
@@ -1228,8 +1236,14 @@ function Material.Load(Config)
 
 				NewButton.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,20)
 				NewButton.MouseButton1Down:Connect(function()
-					DropdownCallback(Value)
-					DropdownTitle.Text = DropdownText..": "..Value
+                    if(Dropdownactived == false) then 
+                        DropToggle = false
+                        return 
+                    end
+                    if(DropdownClear == false) then
+                        DropdownCallback(Value)
+                    end
+                    DropdownTitle.Text = DropdownText..": "..Value
                     DropToggle = false
                     TweenService:Create(DropdownButton, TweenInfo.new(0.15), {Rotation = DropToggle and 135 or 0}):Play()
                     TweenService:Create(DropdownContent, TweenInfo.new(0.15), {Size = DropToggle and DropdownSize or UDim2.fromScale(1,0)}):Play()
@@ -1238,6 +1252,10 @@ function Material.Load(Config)
 			end)
 
 			DropdownTitle.MouseButton1Down:Connect(function()
+                if(Dropdownactived == false) then 
+                    DropToggle = false
+                    return
+                end
 				DropToggle = not DropToggle
 				TweenService:Create(DropdownButton, TweenInfo.new(0.15), {Rotation = DropToggle and 135 or 0}):Play()
 				TweenService:Create(DropdownContent, TweenInfo.new(0.15), {Size = DropToggle and DropdownSize or UDim2.fromScale(1,0)}):Play()
@@ -1260,7 +1278,17 @@ function Material.Load(Config)
 			function DropdownLibrary:GetText()
 				return DropdownTitle.Text
 			end
-
+            function DropdownLibrary:GetActived()
+				return Dropdownactived
+			end
+            function DropdownLibrary:SetActived(val)
+                Dropdownactived = val
+                if(val == true) then
+                    DropdownBar.ImageColor3 = Theme.Dropdown
+                else
+                    DropdownBar.ImageColor3 = Color3.fromRGB(255,0,0)
+                end
+            end
 			function DropdownLibrary:SetOptions(NewMenu)
 				DropdownOptions = NewMenu or {}
 				NumberOfOptions = #DropdownOptions
