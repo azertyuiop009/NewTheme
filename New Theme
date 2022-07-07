@@ -1149,7 +1149,7 @@ function Material.Load(Config)
 
 		function OptionLibrary.Dropdown(DropdownConfig)
 			local DropdownText = DropdownConfig.Text or "nil dropdown"
-            local DropdownClear = DropdownConfig.Clear or true
+            local DropdownClear = DropdownConfig.clear or true
             local Dropdownactived = DropdownConfig.actived or true
 			local DropdownCallback = DropdownConfig.Callback or function() print("nil dropdown") end
 			local DropdownOptions = DropdownConfig.Options or {}
@@ -1243,6 +1243,7 @@ function Material.Load(Config)
                     
                     DropdownCallback(Value)
                     DropToggle = false
+                    print(DropdownClear)
                     if(DropdownClear == true) then
                         DropdownTitle.Text = DropdownText..": "..Value
                     end
