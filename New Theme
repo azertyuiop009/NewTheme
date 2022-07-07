@@ -2156,7 +2156,7 @@ function Material.Load(Config)
 			ToggleLabel.TextSize = 14
 			ToggleLabel.Text = ToggleText
 			ToggleLabel.TextColor3 = Color3.new(255,255,255)
-            ToggleLabel.BackgroundColor3 = Color3.new(0,0,0)
+            ToggleLabel.BackgroundColor3 = dathem
 			ToggleLabel.TextTransparency = 1
 			ToggleLabel.ClipsDescendants = true
 			ToggleLabel.Parent = Toggle
@@ -2191,9 +2191,9 @@ function Material.Load(Config)
             function ToggleLibrary:SetActived(val)
                 Toggleactived = val
                 if(val == true) then
-                    Toggle.ImageColor3 = Color3.new(0,0,0)
+                    ToggleLabel.BackgroundColor3 = Color3.new(0,0,0)
                 else
-                    Toggle.ImageColor3 = Color3.fromRGB(255,0,0)
+                    ToggleLabel.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 end
             end
 
