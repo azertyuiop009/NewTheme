@@ -2185,9 +2185,9 @@ function Material.Load(Config)
             function ToggleLibrary:SetActived(val)
                 Toggleactived = val
                 if(val == true) then
-                    ToggleLabel.ImageColor3 = Color3.new(0,0,0)
+                    ToggleLabel.BackgroundColor3 = Color3.new(0,0,0)
                 else
-                    ToggleLabel.ImageColor3 = Color3.fromRGB(255,0,0)
+                    ToggleLabel.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 end
             end
 
