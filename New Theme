@@ -1148,6 +1148,7 @@ function Material.Load(Config)
 		end
 
 		function OptionLibrary.Dropdown(DropdownConfig)
+            print(DropdownConfig.clear)
 			local DropdownText = DropdownConfig.Text or "nil dropdown"
             local DropdownClear = DropdownConfig.clear or true
             local Dropdownactived = DropdownConfig.actived or true
