@@ -1149,7 +1149,7 @@ function Material.Load(Config)
 
 		function OptionLibrary.Dropdown(DropdownConfig)
 			local DropdownText = DropdownConfig.Text or "nil dropdown"
-            local DropdownClear = DropdownConfig.Clear or false
+            local DropdownClear = DropdownConfig.Clear or true
             local Dropdownactived = DropdownConfig.actived or true
 			local DropdownCallback = DropdownConfig.Callback or function() print("nil dropdown") end
 			local DropdownOptions = DropdownConfig.Options or {}
@@ -1240,11 +1240,12 @@ function Material.Load(Config)
                         DropToggle = false
                         return 
                     end
-                    if(DropdownClear == false) then
-                        DropdownCallback(Value)
-                    end
-                    DropdownTitle.Text = DropdownText..": "..Value
+                    
+                    DropdownCallback(Value)
                     DropToggle = false
+                    if(DropdownClear == true) then
+                        DropdownTitle.Text = DropdownText..": "..Value
+                    end
                     TweenService:Create(DropdownButton, TweenInfo.new(0.15), {Rotation = DropToggle and 135 or 0}):Play()
                     TweenService:Create(DropdownContent, TweenInfo.new(0.15), {Size = DropToggle and DropdownSize or UDim2.fromScale(1,0)}):Play()
                     TweenService:Create(Dropdown, TweenInfo.new(0.15), {Size = DropToggle and (DropdownSize + UDim2.fromOffset(0,35)) or (UDim2.fromScale(1,0) + UDim2.fromOffset(0,30))}):Play()
